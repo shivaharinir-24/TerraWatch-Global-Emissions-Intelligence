@@ -22,3 +22,7 @@ env/
 # Operating system files
 .DS_Store
 Thumbs.db
+
+
+# Original source dataset (download separately)
+data/global_co2.csv
