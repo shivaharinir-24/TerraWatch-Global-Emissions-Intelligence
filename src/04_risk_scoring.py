@@ -114,3 +114,11 @@ risk_data["risk_category"] = risk_data["risk_score"].apply(
 print("\nEmissions Category Distribution:")
 print(risk_data["risk_category"].value_counts())
 
+
+# Save the updated scoring dataset
+risk_data.to_csv(
+    "data/terrawatch_risk_scores.csv",
+    index=False
+)
+
+print("Updated scoring dataset saved!")

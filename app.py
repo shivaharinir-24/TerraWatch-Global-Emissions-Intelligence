@@ -2,12 +2,32 @@
 import streamlit as st
 import pandas as pd
 
+import subprocess
+import sys
+from pathlib import Path
+
+
 # Configure dashboard
 st.set_page_config(
     page_title="TerraWatch",
     page_icon="🌍",
     layout="wide"
 )
+
+project_root = Path(__file__).resolve().parent
+data_dir = project_root / "data"
+
+cleaned_file = data_dir / "terrawatch_cleaned.csv"
+scores_file = data_dir / "terrawatch_risk_scores.csv"
+
+# Prepare datasets if they do not exist
+if not cleaned_file.exists() or not scores_file.exists():
+    with st.spinner("Preparing TerraWatch emissions data..."):
+        subprocess.run(
+            [sys.executable, str(project_root / "run_pipeline.py")],
+            cwd=project_root,
+            check=True
+        )
 
 # Load our processed data
 df = pd.read_csv("data/terrawatch_cleaned.csv")
