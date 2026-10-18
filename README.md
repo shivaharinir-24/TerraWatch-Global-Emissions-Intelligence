@@ -137,3 +137,32 @@ portfolio-based analysis.
 
 Source licenses and attribution requirements:
 https://github.com/owid/co2-data#license
+
+
+## Data Preparation
+
+TerraWatch uses the Our World in Data CO2 dataset.
+
+The original dataset and processed CSV files are not
+included in this repository.
+
+To download and prepare the data, run:
+
+```powershell
+python run_pipeline.py
+```
+
+This automatically:
+
+1. Downloads the original emissions dataset.
+2. Cleans and filters country-level records.
+3. Calculates relative emissions scores.
+4. Generates the CSV files required by the dashboard.
+
+An internet connection is required for the download.
+
+After data preparation, launch the dashboard:
+
+```powershell
+python -m streamlit run app.py
+```
